@@ -238,6 +238,8 @@ The deployment workflow builds the Vite application, uploads the \`dist\` artifa
 
 **Level 2 — Complete**
 
+Final verification is enforced by the repository CI and browser deployment checks.
+
 The final Level 2 gate covers:
 
 - Challenge Engine
