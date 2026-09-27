@@ -219,12 +219,22 @@ function ChallengePage({ id, completed, onComplete }: { id: string; completed: s
 
   const finish = () => {
     if (choice === options[0]) {
-      setRepaired(true);
       setStep(3);
-      onComplete(challenge.id, { id: challenge.id, challengeId: challenge.id, title: challenge.title, status: "verified", detail: challenge.issue });
     } else {
       setStep(2);
     }
+  };
+
+  const verifyRepair = () => {
+    setRepaired(true);
+    setStep(4);
+    onComplete(challenge.id, {
+      id: challenge.id,
+      challengeId: challenge.id,
+      title: challenge.title,
+      status: "verified",
+      detail: challenge.issue,
+    });
   };
 
   return (
@@ -232,7 +242,7 @@ function ChallengePage({ id, completed, onComplete }: { id: string; completed: s
       <PageIntro eyebrow={`CHALLENGE / ${challenge.category.toUpperCase()}`} title={challenge.title} text={challenge.summary} />
       <div className="challenge-workspace">
         <aside className="challenge-sidebar" aria-label="Challenge progress">
-          {["Scenario", "Investigate", "Identify", "Verify"].map((label, index) => (
+          {["Scenario", "Investigate", "Identify", "Repair", "Verify"].map((label, index) => (
             <div className={`side-step ${step === index ? "current" : ""} ${step > index ? "done" : ""}`} key={label}><span>{index + 1}</span>{label}</div>
           ))}
         </aside>
@@ -268,10 +278,26 @@ function ChallengePage({ id, completed, onComplete }: { id: string; completed: s
             </div>
           )}
           {step === 3 && (
-            <div className="exercise result-right">
-              <span className="status-badge">VERIFIED</span><h2>{repaired ? "Finding confirmed." : "Challenge complete."}</h2>
+            <div className="exercise">
+              <span className="status-badge">REPAIR</span>
+              <h2>Apply the repair.</h2>
               <p><strong>Why it matters:</strong> {challenge.why}</p>
-              <div className="repair-box"><span className="eyebrow">REPAIR</span><p>{challenge.repair}</p><span className="eyebrow">VERIFY</span><p>{challenge.verification}</p></div>
+              <div className="repair-box">
+                <span className="eyebrow">RECOMMENDED REPAIR</span>
+                <p>{challenge.repair}</p>
+              </div>
+              <button className="button primary" onClick={verifyRepair}>Apply repair →</button>
+            </div>
+          )}
+          {step === 4 && (
+            <div className="exercise result-right">
+              <span className="status-badge">VERIFIED</span>
+              <h2>{repaired ? "Repair verified." : "Challenge complete."}</h2>
+              <p>{challenge.verification}</p>
+              <div className="repair-box">
+                <span className="eyebrow">RESULT</span>
+                <p>The finding was identified, the recommended repair was applied, and the verification step was completed.</p>
+              </div>
               <a className="button primary" href="#/challenges">{done ? "Back to challenges" : "Continue →"}</a>
             </div>
           )}
