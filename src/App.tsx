@@ -405,4 +405,6 @@ function contrastRatio(a: string, b: string) {
   return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
 }
 
+
 export { contrastRatio };
+export default App;
