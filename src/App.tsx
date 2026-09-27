@@ -225,4 +225,3 @@ function About({ report }: { report: ReportState }) {
 }
 function Callout({ title, text }: { title: string; text: string }) { return <aside className="callout"><strong>{title}</strong><p>{text}</p></aside>; }
 
-export { contrastRatio };
