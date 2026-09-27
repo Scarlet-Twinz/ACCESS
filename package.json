@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:accessibility": "vitest run"
+    "test:accessibility": "vitest run",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.4",
