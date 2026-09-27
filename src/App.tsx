@@ -39,7 +39,8 @@ export default function App() {
 
   useEffect(() => {
     const sync = () => {
-      setPage(getPage());
+      const raw = window.location.hash.replace(/^#\/?/, "").split("/")[0];
+      if (raw !== "main-content") setPage(getPage());
       setMenuOpen(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
