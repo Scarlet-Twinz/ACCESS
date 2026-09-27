@@ -296,7 +296,7 @@ Initial challenge themes:
 9. Incorrect semantic structure
 10. Interaction that depends unnecessarily on a pointer
 
-The final challenge list may be refined during Level 3 when the individual challenge mechanics are designed.
+The challenge list is implemented as ten structured Level 2 scenarios. The mechanics are now driven by the reusable challenge engine.
 
 ---
 
@@ -647,24 +647,7 @@ All of these are now defined in this specification.
 
 **LEVEL 1 — COMPLETE**
 
-The project is now ready to move into **Level 2: Information Architecture and UX Design**.
-
-Level 2 must not begin by randomly creating components.
-
-It must first translate this specification into:
-
-1. Route structure.
-2. Navigation model.
-3. Page-to-page relationships.
-4. User flows.
-5. Component responsibilities.
-6. Challenge interaction flow.
-7. Responsive behavior.
-8. Accessibility requirements per page.
-9. Empty, loading, success, error, and verification states.
-10. A clear wireframe-level layout for every primary route.
-
-Only after that should implementation begin.
+The product definition and foundation described in this document were completed before Level 2 implementation began. The Level 2 implementation now lives in the main application and is recorded separately in `docs/LEVEL-2-COMPLETION.md`.
 
 ---
 
