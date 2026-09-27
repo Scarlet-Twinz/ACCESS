@@ -23,10 +23,16 @@ jobs:
         run: npm install
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Check Pages URL variants
+        run: |
+          echo "Uppercase path:"
+          curl -sS -L -o /tmp/access-upper.html -w "%{http_code} %{url_effective}\n" https://scarlet-twinz.github.io/ACCESS/
+          echo "Lowercase path:"
+          curl -sS -L -o /tmp/access-lower.html -w "%{http_code} %{url_effective}\n" https://scarlet-twinz.github.io/access/
       - name: Run browser verification
         run: npx playwright test
         env:
-          PLAYWRIGHT_TEST_BASE_URL: https://scarlet-twinz.github.io/ACCESS/
+          PLAYWRIGHT_TEST_BASE_URL: https://scarlet-twinz.github.io/access/
       - name: Upload browser report
         if: \${{ !cancelled() }}
         uses: actions/upload-artifact@v4
