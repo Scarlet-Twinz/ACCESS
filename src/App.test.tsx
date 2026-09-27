@@ -47,7 +47,7 @@ describe("ACCESS Level 2", () => {
     fireEvent.click(screen.getByLabelText(/the control exposes no useful accessible name/i));
     fireEvent.click(screen.getByRole("button", { name: /check finding/i }));
     expect(screen.getByText(/apply the repair/i)).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /apply the repair/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Apply repair →" }));
     expect(screen.getByRole("heading", { name: /repair verified/i })).toBeInTheDocument();
     const saved = JSON.parse(localStorage.getItem("access-report-v2") || "{}");
     expect(saved.completed).toContain("accessible-name");
@@ -59,9 +59,9 @@ describe("ACCESS Level 2", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /run inspection/i }));
     expect(screen.getByText(/button has no accessible name/i)).toBeInTheDocument();
-    expect(screen.getByText(/element:/i)).toBeInTheDocument();
-    expect(screen.getByText(/repair:/i)).toBeInTheDocument();
-    expect(screen.getByText(/verify:/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/element:/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/repair:/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/verify:/i).length).toBeGreaterThan(0);
   });
 
   it("records a contrast check", () => {
