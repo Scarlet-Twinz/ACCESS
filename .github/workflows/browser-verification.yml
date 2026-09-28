@@ -25,6 +25,10 @@ jobs:
         run: npm install
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Inspect recent Pages deployments
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run list --workflow deploy-pages.yml --limit 5 --json databaseId,status,conclusion,headSha,createdAt,url
       - name: Inspect Pages configuration
         env:
           GH_TOKEN: ${{ github.token }}
