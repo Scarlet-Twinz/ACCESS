@@ -30,7 +30,7 @@ jobs:
       - name: Inspect Pages deployment state
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api repos/${{ github.repository }}/pages/deployments/e8de0a7230068d50625aee79661d989d7492fec0
+        run: gh api repos/${{ github.repository }}/pages/deployments/7b5ad449f7f9a22470ecb87335a989b700a7cdf3
       - name: Inspect recent Pages deployments
         env:
           GH_TOKEN: ${{ github.token }}
