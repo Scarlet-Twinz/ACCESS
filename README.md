@@ -10,13 +10,15 @@ It turns common accessibility failures into focused investigations so developers
 
 > **Live app:** [Open ACCESS](https://scarlet-twinz.github.io/ACCESS/)
 
+---
+
 ## What you can do
 
 | Area | What to expect |
 |---|---|
 | **Home** | Product overview, learning loop, progress and entry points |
-| **Learn** | Ten concise accessibility topics, each connected to a practical exercise |
-| **Challenges** | Ten structured scenarios with filtering, attempts and verified completion |
+| **Learn** | Concise accessibility topics connected to practical exercises |
+| **Challenges** | Structured scenarios with filtering, attempts and verified completion |
 | **Inspector** | Guided inspection with structured, human-reviewable findings |
 | **Contrast** | Live contrast ratio testing with text and non-text guidance |
 | **Keyboard** | Keyboard-only practice, visible focus and focus-return behavior |
@@ -34,7 +36,9 @@ Every challenge follows the same sequence:
 
 Wrong answers do not silently mark a challenge complete. They return the learner to review and retry.
 
-## Ten practical challenges
+## Practical accessibility challenges
+
+ACCESS includes ten structured scenarios covering common accessibility problems:
 
 1. **The Silent Button** — accessible names
 2. **The Unnamed Field** — form labels
@@ -113,7 +117,7 @@ Every topic points directly to a related challenge so learning leads into practi
 
 ACCESS is local-first.
 
-The browser stores the session report in \`localStorage\`, including:
+The browser stores the session report in `localStorage`, including:
 
 - challenge attempts
 - verified challenges
@@ -131,7 +135,7 @@ Use **Report → Reset local report** to clear the stored ACCESS session from th
 
 ACCESS is also treated as an accessibility engineering exercise.
 
-The Level 2 self-audit covers:
+The application has been reviewed for:
 
 - keyboard navigation
 - visible focus
@@ -155,18 +159,42 @@ ACCESS uses official W3C/WAI material as its standards foundation:
 - [WAI Forms Tutorial](https://www.w3.org/WAI/tutorials/forms/)
 - [WCAG Keyboard Understanding](https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html)
 
+## Architecture
+
+ACCESS is intentionally frontend-only.
+
+The application separates the user interface, accessibility exercises, inspection logic, local reporting and verification behavior so the core experience remains testable without a backend service.
+
+The project includes:
+
+- React application components
+- TypeScript application and domain types
+- accessibility exercise data
+- automated unit and component tests
+- end-to-end browser verification
+- Vite production builds
+- GitHub Actions CI
+- GitHub Pages deployment
+
+The project deliberately stays static and focused. No infrastructure is added unless it improves the learning or inspection experience.
+
 ## Technology
 
-- React 19
-- TypeScript
-- Vite
-- Vitest
-- React Testing Library
-- Responsive CSS
-- GitHub Actions
-- GitHub Pages
-
-The project intentionally stays static and focused. Level 2 does not add infrastructure that does not improve the learning experience.
+| Area | Technology |
+|---|---|
+| Interface | React 19 |
+| Language | TypeScript |
+| Build tool | Vite |
+| Testing | Vitest |
+| Component testing | React Testing Library |
+| Browser verification | Playwright |
+| Styling | Responsive CSS |
+| CI | GitHub Actions |
+| Deployment | GitHub Pages |
+| Data storage | Browser `localStorage` |
+| Backend | None |
+| Database | None |
+| External API | None |
 
 ## Run locally
 
@@ -176,102 +204,96 @@ Requirements:
 - npm
 - modern browser
 
-\`\`\`bash
+Clone the repository:
+
+```bash
 git clone https://github.com/Scarlet-Twinz/ACCESS.git
 cd ACCESS
 npm install
 npm run dev
-\`\`\`
+```
 
-Verification:
+## Testing
 
-\`\`\`bash
+Run the automated test suite:
+
+```bash
 npm test
+```
+
+Create the production build:
+
+```bash
 npm run build
-\`\`\`
+```
 
-Production preview:
+Run the browser verification suite when the required browser environment is available:
 
-\`\`\`bash
-npm run build
-npm run preview
-\`\`\`
+```bash
+npx playwright test
+```
 
-## Project structure
-
-\`\`\`text
-ACCESS/
-├── .github/
-│   └── workflows/
-│       ├── node-tests.yml
-│       └── deploy-pages.yml
-├── docs/
-│   ├── LEVEL-1-PRODUCT-SPEC.md
-│   └── LEVEL-2-COMPLETION.md
-├── tests/
-│   └── e2e/
-│       └── access.spec.ts
-├── src/
-│   ├── App.tsx
-│   ├── App.test.tsx
-│   ├── data.ts
-│   ├── types.ts
-│   ├── main.tsx
-│   ├── styles.css
-│   └── test/
-├── index.html
-├── package.json
-├── tsconfig*.json
-├── vite.config.ts
-├── vitest.config.ts
-└── playwright.config.ts
-\`\`\`
-
-## Documentation
-
-- [Level 1 product specification](docs/LEVEL-1-PRODUCT-SPEC.md)
-- [Level 2 completion record](docs/LEVEL-2-COMPLETION.md)
+The project uses GitHub Actions to validate the automated tests and production build.
 
 ## Deployment
 
 ACCESS is deployed as a static site through GitHub Pages using GitHub Actions.
 
-The deployment workflow builds the Vite application, uploads the \`dist\` artifact and publishes it through the GitHub Pages deployment environment.
+**Live app:** https://scarlet-twinz.github.io/ACCESS/
 
-## Status
+The deployment workflow builds the Vite application, uploads the production artifact and publishes it through the GitHub Pages deployment environment.
 
-**Level 2 — Complete**
+## Design principles
 
-Final verification is enforced by CI and browser deployment checks.
+### Experience before explanation
 
-The final Level 2 gate covers:
+The learner should encounter the accessibility problem before being given the answer.
 
-- Challenge Engine
-- Real Scenarios
-- Inspection Engine
-- Contrast Laboratory
-- Keyboard Laboratory
-- Learning System
-- Progress & Reporting
-- ACCESS Self-Audit
-- Automated Tests
-- Production Build
-- Browser Verification
-- Deployment
+### Evidence before assumptions
 
-This is the final planned project level. No Level 3 is part of the project scope.
+The Inspector provides structured evidence while keeping human evaluation in the loop.
+
+### Repair before completion
+
+A challenge is not complete merely because a diagnosis is correct. The repaired behavior must also be verified.
+
+### Accessibility is part of the product
+
+ACCESS applies the same accessibility principles to its own interface that it teaches through its exercises.
+
+### Small scope, complete experience
+
+The project focuses on practical accessibility learning and inspection rather than adding unnecessary infrastructure.
+
+## Current status
+
+**Complete — tested, production-built, browser-verified, and deployed.**
+
+The current application includes:
+
+- ten practical accessibility challenges
+- guided inspection
+- contrast testing
+- keyboard-only practice
+- learning topics connected to exercises
+- local progress and reporting
+- accessibility self-audit
+- automated tests
+- production build verification
+- browser verification
+- GitHub Actions CI
+- GitHub Pages deployment
 
 ## Author
 
 **Anthony Emmanuella Mmasinachi**
 
-Full-stack and systems engineer focused on backend systems, distributed processing, networking, databases, AI integration, and practical software engineering.
+Full-stack and systems-focused developer building projects across web applications, backend systems, SaaS architecture, automation, AI integration, and practical software engineering.
 
-## Project Links
+## Project links
 
 - **Live App:** https://scarlet-twinz.github.io/ACCESS/
 - **Repository:** https://github.com/Scarlet-Twinz/ACCESS
-- **Author:** Anthony Emmanuella Mmasinachi
 - **GitHub:** https://github.com/Scarlet-Twinz
 
 ## License
