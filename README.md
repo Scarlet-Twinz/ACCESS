@@ -296,6 +296,9 @@ Full-stack and systems-focused developer building projects across web applicatio
 - **Repository:** https://github.com/Scarlet-Twinz/ACCESS
 - **GitHub:** https://github.com/Scarlet-Twinz
 
+
 ## License
 
-No open-source license is included. ACCESS is a personal portfolio project.
+MIT License.
+
+See [LICENSE](LICENSE) for the full license text.
