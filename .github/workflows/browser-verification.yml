@@ -2,6 +2,8 @@ name: ACCESS Browser Verification
 
 on:
   deployment_status:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -9,7 +11,7 @@ permissions:
 
 jobs:
   browser:
-    if: github.event_name == 'workflow_dispatch' || github.event.deployment_status.state == 'success'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' || github.event.deployment_status.state == 'success'
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
