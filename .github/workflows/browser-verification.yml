@@ -25,10 +25,12 @@ jobs:
         run: npm install
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Inspect deployment status
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api repos/${{ github.repository }}/deployments/e8de0a7230068d50625aee79661d989d7492fec0/statuses
+      - name: Inspect Pages deployment state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api repos/${{ github.repository }}/pages/deployments/e8de0a7230068d50625aee79661d989d7492fec0
       - name: Inspect recent Pages deployments
         env:
           GH_TOKEN: ${{ github.token }}
