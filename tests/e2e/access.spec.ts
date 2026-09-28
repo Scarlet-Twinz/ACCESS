@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("live ACCESS smoke flow", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/?v=ffd1d315bb49c9ca8eadd82a74a3281b681d2f07");
   await expect(page).toHaveTitle(/ACCESS/i);
   await expect(page.getByRole("heading", { name: /build for everyone/i })).toBeVisible();
 
@@ -12,7 +12,7 @@ test("live ACCESS smoke flow", async ({ page }) => {
 });
 
 test("challenge completion works in a real browser", async ({ page }) => {
-  await page.goto("/#/challenge/accessible-name");
+  await page.goto("/?v=ffd1d315bb49c9ca8eadd82a74a3281b681d2f07#/challenge/accessible-name");
   await expect(page.getByRole("heading", { name: /the silent button/i })).toBeVisible();
   await page.getByRole("button", { name: /i have investigated/i }).click();
   await page.getByLabel(/the control exposes no useful accessible name/i).check();
@@ -22,14 +22,14 @@ test("challenge completion works in a real browser", async ({ page }) => {
 });
 
 test("contrast tool calculates and records a reference pair", async ({ page }) => {
-  await page.goto("/#/contrast");
+  await page.goto("/?v=ffd1d315bb49c9ca8eadd82a74a3281b681d2f07#/contrast");
   await page.getByRole("button", { name: "High contrast" }).click();
   await expect(page.getByText("21.00 : 1")).toBeVisible();
   await page.getByRole("button", { name: /record this check/i }).click();
 });
 
 test("keyboard lab exposes the completion condition", async ({ page }) => {
-  await page.goto("/#/keyboard");
+  await page.goto("/?v=ffd1d315bb49c9ca8eadd82a74a3281b681d2f07#/keyboard");
   await page.getByRole("button", { name: "Support" }).click();
   await expect(page.getByText(/practice complete/i)).toBeVisible();
 });
