@@ -208,6 +208,9 @@ ACCESS/
 ├── docs/
 │   ├── LEVEL-1-PRODUCT-SPEC.md
 │   └── LEVEL-2-COMPLETION.md
+├── tests/
+│   └── e2e/
+│       └── access.spec.ts
 ├── src/
 │   ├── App.tsx
 │   ├── App.test.tsx
@@ -220,7 +223,8 @@ ACCESS/
 ├── package.json
 ├── tsconfig*.json
 ├── vite.config.ts
-└── vitest.config.ts
+├── vitest.config.ts
+└── playwright.config.ts
 \`\`\`
 
 ## Documentation
@@ -256,6 +260,19 @@ The final Level 2 gate covers:
 - Deployment
 
 This is the final planned project level. No Level 3 is part of the project scope.
+
+## Author
+
+**Anthony Emmanuella Mmasinachi**
+
+Full-stack and systems engineer focused on backend systems, distributed processing, networking, databases, AI integration, and practical software engineering.
+
+## Project Links
+
+- **Live App:** https://scarlet-twinz.github.io/ACCESS/
+- **Repository:** https://github.com/Scarlet-Twinz/ACCESS
+- **Author:** Anthony Emmanuella Mmasinachi
+- **GitHub:** https://github.com/Scarlet-Twinz
 
 ## License
 
