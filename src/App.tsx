@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { challenges, learnTopics } from "./data";
 import type { Finding, Page, ReportState } from "./types";
 
@@ -251,7 +251,7 @@ function ChallengePage({ id, completed, onComplete }: { id: string; completed: s
             <div className="exercise">
               <span className="eyebrow">SCENARIO</span><h2>Something about this interface is harder to use than it should be.</h2>
               <p>Interact with the sample below. Do not worry about knowing the answer yet. Your job is to observe the behavior.</p>
-              <SampleInterface type={challenge.id} />
+              <SampleInterface type={challenge.id} repaired={step === 4 && repaired} />
               <button className="button primary" onClick={() => setStep(1)}>I have investigated →</button>
             </div>
           )}
@@ -307,7 +307,8 @@ function ChallengePage({ id, completed, onComplete }: { id: string; completed: s
   );
 }
 
-function SampleInterface({ type }: { type: string }) {
+function SampleInterface({ type, repaired = false }: { type: string; repaired?: boolean }) {
+  if (repaired) return <div className="sample-ui"><strong>Verified interface</strong><span>The repaired interaction is now available through the intended semantic or input path.</span>{type === "accessible-name" || type === "semantics" ? <button type="button" aria-label="Open settings">Settings</button> : <button type="button">Continue</button>}</div>;
   if (type === "form-label") return <div className="sample-ui"><label htmlFor="good-email">Email address</label><input id="good-email" type="email" placeholder="name@example.com" /><button type="button">Continue</button></div>;
   if (type === "contrast") return <div className="sample-ui contrast-sample"><p>Important account information</p><span>Some supporting information is difficult to perceive.</span></div>;
   if (type === "focus-loss") return <div className="sample-ui"><button type="button" onClick={(e) => (e.currentTarget.textContent = "Dialog opened")}>Edit address</button><p>Use the keyboard to observe where focus goes after an interface change.</p></div>;
@@ -423,7 +424,7 @@ function contrastRatio(a: string, b: string) {
     const value = hex.replace("#", "");
     if (!/^[0-9a-fA-F]{6}$/.test(value)) return 0;
     const rgb = [0, 2, 4].map((i) => parseInt(value.slice(i, i + 2), 16) / 255);
-    const linear = rgb.map((v) => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+    const linear = rgb.map((v) => v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
     return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
   };
   const l1 = luminance(a);
